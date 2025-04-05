@@ -1,0 +1,6 @@
+.env
+/backend/.venv
+docker-compose.yml
+uploads/
+processed_videos/
+node_modules/
