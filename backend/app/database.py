@@ -9,7 +9,7 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Create SSL context
+# Create SSL context for Aiven PostgreSQL
 ssl_context = ssl.create_default_context()
 ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
@@ -21,7 +21,10 @@ engine = create_async_engine(
     future=True,
     pool_pre_ping=True,
     connect_args={
-        "ssl": ssl_context
+        "ssl": ssl_context,
+        "server_settings": {
+            "application_name": "video_processing"
+        }
     }
 )
 
